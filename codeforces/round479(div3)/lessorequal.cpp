@@ -9,7 +9,7 @@ int32_t main()
 {
     IOS;
 
-    int i, n, k, ans = -1;
+    int i, n, k, ans;
     cin >> n >> k;
     int arr[n];
 
@@ -18,19 +18,23 @@ int32_t main()
 
     sort(arr, arr + n);
 
+    if (k == 0)
+        ans = arr[0] - 1;
+    else
+        ans = arr[k - 1]; 
+
+    int count = 0;
     for (i = 0; i < n; i++)
     {
-        if (k != 0)
+        if (arr[i] <= ans)
         {
-            ans = arr[i];
-            k -= 1;
+            count++;
         }
         else
             break;
-        
     }
     
-    if (arr[i] == arr[i - 1])
+    if ((count != k) || !(1 <= ans && ans <= 1000 * 1000 * 1000))
         ans = -1;
     
     cout << ans << endl;
